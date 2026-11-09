@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d18">
+  <title>Delete MIKO Account</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #090d18;
+      color: #f4f6ff;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 540px;
+      padding: 32px;
+      background: #151c2c;
+      border: 1px solid #303b52;
+      border-radius: 18px;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 28px;
+    }
+
+    p, li {
+      color: #c3ccdc;
+      line-height: 1.65;
+    }
+
+    label {
+      display: block;
+      margin: 18px 0 8px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #46536d;
+      border-radius: 9px;
+      background: #0d1423;
+      color: white;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: 0;
+      border-radius: 9px;
+      background: #e34d61;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #c93b50;
+    }
+
+    .warning {
+      padding: 14px;
+      border-radius: 9px;
+      background: #35251e;
+      color: #ffd6a5;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #8bb9ff;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Delete Your MIKO Account</h1>
+
+    <p>
+      You can request permanent deletion of your MIKO account
+      and associated personal data using this page.
+    </p>
+
+    <div class="warning">
+      <strong>Important:</strong>
+      Account deletion is permanent. Your account information,
+      chat history and saved memories will be deleted after
+      your identity and request are verified.
+    </div>
+
+    <h3>Data that may be deleted</h3>
+    <ul>
+      <li>MIKO account and username</li>
+      <li>Stored chat conversations and history</li>
+      <li>Saved long-term memories</li>
+      <li>Associated account sessions</li>
+    </ul>
+
+    <form id="deleteForm">
+      <label for="username">MIKO Username *</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        minlength="3"
+        maxlength="24"
+        pattern="[A-Za-z0-9_]+"
+        placeholder="Enter your MIKO username"
+        required
+      >
+
+      <label for="email">Contact Email (Optional)</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your contact email"
+      >
+
+      <label for="reason">Additional Information (Optional)</label>
+      <textarea
+        id="reason"
+        name="reason"
+        rows="3"
+        placeholder="Any additional information"
+      ></textarea>
+
+      <p>
+        Do not enter or share your account password on this page.
+      </p>
+
+      <button type="submit">Request Account Deletion</button>
+    </form>
+
+    <p>
+      Your request will open an email addressed to our support
+      team. Send the email so we can verify your ownership and
+      process your request.
+    </p>
+
+    <p>
+      Support:
+      <a href="mailto:kiro.support.official@gmail.com">
+        kiro.support.official@gmail.com
+      </a>
+    </p>
+
+    <p>
+      <a href="https://ashokff124.github.io/miko-privacy-policy/">
+        Privacy Policy
+      </a>
+    </p>
+
+    <div class="footer">
+      © KIRO Enterprises · MIKO
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("deleteForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const reason = document.getElementById("reason").value.trim();
+
+      if (!/^[A-Za-z0-9_]{3,24}$/.test(username)) {
+        alert("Please enter a valid MIKO username.");
+        return;
+      }
+
+      const subject = "MIKO Account Deletion Request";
+
+      const body =
+        "Hello MIKO Support,\n\n" +
+        "I would like to request deletion of my MIKO account.\n\n" +
+        "Username: " + username + "\n" +
+        "Contact Email: " + (email || "Not provided") + "\n" +
+        "Additional Information: " + (reason || "None") + "\n\n" +
+        "Please verify my account ownership and process my deletion request.\n\n" +
+        "Thank you.";
+
+      const mailto =
+        "mailto:kiro.support.official@gmail.com" +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+      window.location.href = mailto;
+    });
+  </script>
+</body>
+</html>
